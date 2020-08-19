@@ -1,0 +1,28 @@
+{
+  "name": "func-html",
+  "version": "1.0.0",
+  "description": "Functional html builder",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drakosha/func-html.git"
+  },
+  "keywords": [
+    "html",
+    "functional",
+    "builder",
+    "render"
+  ],
+  "author": "Mikhail Kostryukov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/drakosha/func-html/issues"
+  },
+  "homepage": "https://github.com/drakosha/func-html#readme",
+  "dependencies": {
+    "func-helpers": "^1.0.0"
+  }
+}
