@@ -1,4 +1,4 @@
-const { mapKeys, forEachKey, ensureFn } = require('func-helpers');
+const { mapKeys, forEachKey, ensureFn, when } = require('func-helpers');
 
 function escape(unsafe) {
   return String(unsafe)
@@ -116,7 +116,9 @@ html.safe = (...content) => {
 };
 
 html.if = (conditionGetter, ifTrue, ifFalse) => {
-  const condition = ensureFn(conditionGetter);
+  const condition = typeof conditionGetter === 'object'
+    ? when(conditionGetter)
+    : ensureFn(conditionGetter);
 
   return withBuffer((context, buffer, escaped) => {
     const result = condition(context);
