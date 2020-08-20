@@ -23,6 +23,6 @@
   },
   "homepage": "https://github.com/drakosha/func-html#readme",
   "dependencies": {
-    "func-helpers": "^1.0.0"
+    "func-helpers": "1.x"
   }
 }

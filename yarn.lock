@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-func-helpers@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/func-helpers/-/func-helpers-1.0.0.tgz#2f5964ed82ca25262274739a8bbbdd733b20a46e"
-  integrity sha512-ILJllpRNbZQE/xh/Tem4ECdaMtEASbT7dCkkUpEkQvock5MK3mKw0rgaeSYC4VYudjK4t4RtXUeN6wZAe0VQbQ==
+func-helpers@1.x:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/func-helpers/-/func-helpers-1.1.0.tgz#62511084844e7038639c966a26ad4dd8a8e3040e"
+  integrity sha512-wnEeN1mer7UAtJ8p/h0h15EVyFKwktqp/fHy44Zdx5o1T7sCjgE/ey1P2JIZxDGnFCUvfxcH2ZcF3THkEGV/9Q==
