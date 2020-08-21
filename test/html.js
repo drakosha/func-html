@@ -119,5 +119,10 @@ describe('HTML Builder', function () {
       assert.equal(h.if(G('bla'), h('div'), h('span'))({ bla: true }), '<div></div>');
       assert.equal(h.if(G('bla'), h('div'), h('span'))({ bla: false }), '<span></span>');
     });
+
+    it('should use when wrapper if first argument is object', function() {
+      assert.equal(h.if({ bla: 55 }, h('div'), h('span'))({ bla: 55 }), '<div></div>');
+      assert.equal(h.if({ bla: 56 }, h('div'), h('span'))({ bla: 55 }), '<span></span>');
+    });
   });
 });
