@@ -1,6 +1,6 @@
 const assert = require('assert');
 const h = require('..');
-const { G } = require('func-helpers');
+const { G } = require('@snooty/utils');
 
 describe('HTML Builder', function () {
   describe('tag builder', function () {
