@@ -43,8 +43,10 @@ function html(tagDescription, ...data) {
 
       if (id === 'class')
         rendered = classRender(fixedClasses, content, context);
-      else
+      else {
         rendered = typeof content === 'function' ? content(context) : content;
+        if (typeof rendered === 'object') rendered = JSON.stringify(rendered);
+      }
 
       return `${id}="${escaped ? rendered : escape(rendered)}"`;
     }).join(' ');
@@ -100,6 +102,17 @@ html.each = (collectionGetter, ...content) => {
         parent: context,
         '$root': context['$root'] || context
       }, buffer, escaped));
+  });
+};
+
+html.within = (contextGetter, ...content) => {
+  const getter = ensureFn(contextGetter);
+
+  return withBuffer((context, buffer, escaped) => {
+    const shiftedContext = getter(context);
+
+    content.forEach((entry, index) =>
+      render(entry, shiftedContext, buffer, escaped));
   });
 };
 

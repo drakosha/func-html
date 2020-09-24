@@ -76,9 +76,9 @@ describe('HTML Builder', function () {
     it('should iterate in collecition', function () {
       assert.equal(
         h('div',
-          h.each('collection', h('a', G('entry.val')))
+          h.each('collection', h('a', G('entry.val')), h('span'))
         )(this.context),
-        '<div><a>test1</a><a>test2</a></div>'
+        '<div><a>test1</a><span></span><a>test2</a><span></span></div>'
       );
     });
 
@@ -125,4 +125,25 @@ describe('HTML Builder', function () {
       assert.equal(h.if({ bla: 56 }, h('div'), h('span'))({ bla: 55 }), '<span></span>');
     });
   });
+
+  describe('h.within', function () {
+    before(function () {
+      this.context = {
+        rootValue: 'bla1',
+        collection: [
+          { val: 'test1'},
+          { val: 'test2', internal: [{ val: 'test3' }] }
+        ]
+      };
+    });
+    it('should shift context', function () {
+      assert.equal(
+        h('div',
+          h.each('collection', h.within('entry', h('a', G('val')), h('span')))
+        )(this.context),
+        '<div><a>test1</a><span></span><a>test2</a><span></span></div>'
+      );
+    });
+  });
+
 });
