@@ -1,4 +1,4 @@
-const { mapKeys, forEachKey, ensureFn, when } = require('func-helpers');
+const { mapKeys, forEachKey, ensureFn, when } = require('@snooty/utils');
 
 function escape(unsafe) {
   return String(unsafe)

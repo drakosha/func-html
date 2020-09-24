@@ -1,6 +1,6 @@
 {
   "name": "func-html",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Functional html builder",
   "main": "index.js",
   "scripts": {
@@ -23,6 +23,6 @@
   },
   "homepage": "https://github.com/drakosha/func-html#readme",
   "dependencies": {
-    "func-helpers": "1.x"
+    "@snooty/utils": "1.x"
   }
 }
