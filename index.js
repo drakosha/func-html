@@ -44,8 +44,13 @@ function html(tagDescription, ...data) {
       if (id === 'class')
         rendered = classRender(fixedClasses, content, context);
       else {
-        rendered = typeof content === 'function' ? content(context) : content;
-        if (typeof rendered === 'object') rendered = JSON.stringify(rendered);
+        rendered = renderWith(content, context);
+        if (typeof rendered === 'object') {
+          forEachKey(rendered, (key, val) => {
+            rendered[key] = renderWith(val, context);
+          });
+          rendered = JSON.stringify(rendered)
+        };
       }
 
       const value = escaped ? rendered : escape(rendered);
@@ -57,6 +62,10 @@ function html(tagDescription, ...data) {
     content.forEach(entity => render(entity, context, buffer, escaped));
     buffer.push(`</${tag}>`);
   });
+}
+
+function renderWith(content, context) {
+  return typeof content === 'function' ? content(context) : content;
 }
 
 function withBuffer(fn) {

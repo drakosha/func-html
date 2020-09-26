@@ -50,6 +50,10 @@ describe('HTML Builder', function () {
       assert.equal(h('div#old', { id: 'new' })(), '<div id="new"></div>');
     });
 
+    it('should render objects in attributes', function () {
+      assert.equal(h('div', { data: { id: G('id') } })({ id: 1 }), '<div data="{&quot;id&quot;:1}"></div>');
+    });
+
     it('should escape html strings', function () {
       assert.equal(h('div', h('span', '&&'))(), '<div><span>&amp;&amp;</span></div>');
       assert.equal(h('div', h('span', G('bla')))({ bla: '&&' }), '<div><span>&amp;&amp;</span></div>');
