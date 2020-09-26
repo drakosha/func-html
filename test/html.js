@@ -33,6 +33,10 @@ describe('HTML Builder', function () {
       assert.equal(h('div', { test: G('test') })({ test: 'bla' }), '<div test="bla"></div>');
     });
 
+    it('should avoid attrs with "undefined" values', function () {
+      assert.equal(h('div', { test: undefined, t: '1' })({ test: 'bla' }), '<div t="1"></div>');
+    });
+
     it('should render strings inside content', function () {
       assert.equal(h('div', 'test1', 'test2')(), '<div>test1test2</div>');
     });

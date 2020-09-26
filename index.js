@@ -48,8 +48,10 @@ function html(tagDescription, ...data) {
         if (typeof rendered === 'object') rendered = JSON.stringify(rendered);
       }
 
-      return `${id}="${escaped ? rendered : escape(rendered)}"`;
-    }).join(' ');
+      const value = escaped ? rendered : escape(rendered);
+
+      return rendered !== undefined ? `${id}="${value}"` : rendered;
+    }).filter(v => v !== undefined).join(' ');
 
     buffer.push(`<${tag}${renderedAttrs.length ? ' ' : ''}${renderedAttrs}>`);
     content.forEach(entity => render(entity, context, buffer, escaped));
