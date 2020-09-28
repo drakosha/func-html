@@ -60,8 +60,8 @@ function html(tagDescription, ...data) {
           forEachKey(rendered, (key, val) => {
             rendered[key] = renderWith(val, context);
           });
-          rendered = JSON.stringify(rendered)
-        };
+          rendered = JSON.stringify(rendered);
+        }
       }
 
       const value = escaped ? rendered : escape(rendered);
@@ -137,7 +137,7 @@ html.within = (contextGetter, ...content) => {
   return withBuffer((context, buffer, escaped) => {
     const shiftedContext = getter(context);
 
-    content.forEach((entry, index) =>
+    content.forEach(entry =>
       render(entry, shiftedContext, buffer, escaped));
   });
 };

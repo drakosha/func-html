@@ -24,5 +24,11 @@
   "homepage": "https://github.com/drakosha/func-html#readme",
   "dependencies": {
     "@snooty/utils": "1.x"
+  },
+  "devDependencies": {
+    "eslint-plugin-node": "^11.1.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
   }
 }
