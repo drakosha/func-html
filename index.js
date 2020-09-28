@@ -55,6 +55,8 @@ function html(tagDescription, ...data) {
       else {
         rendered = renderWith(content, context);
         if (typeof rendered === 'object') {
+          rendered = { ...rendered };
+
           forEachKey(rendered, (key, val) => {
             rendered[key] = renderWith(val, context);
           });
