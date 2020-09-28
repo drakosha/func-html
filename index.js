@@ -54,7 +54,7 @@ function html(tagDescription, ...data) {
         rendered = classRender(fixedClasses, content, context);
       else {
         rendered = renderWith(content, context);
-        if (typeof rendered === 'object') {
+        if (rendered && typeof rendered === 'object') {
           rendered = { ...rendered };
 
           forEachKey(rendered, (key, val) => {
