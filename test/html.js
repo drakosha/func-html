@@ -37,6 +37,15 @@ describe('HTML Builder', function () {
       assert.equal(h('div', { test: undefined, t: '1' })({ test: 'bla' }), '<div t="1"></div>');
     });
 
+    it('should render boolean attributes if value is true', function () {
+      assert.equal(h('div', { readonly: true } )(), '<div readonly></div>');
+      assert.equal(h('div', { readonly: G('readonly') } )({ readonly: true }), '<div readonly></div>');
+    });
+
+    it('should not render boolean attributes without value', function () {
+      assert.equal(h('div', { readonly: G('readonly') } )({ readonly: false }), '<div></div>');
+    });
+
     it('should render strings inside content', function () {
       assert.equal(h('div', 'test1', 'test2')(), '<div>test1test2</div>');
     });

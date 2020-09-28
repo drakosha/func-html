@@ -1,5 +1,14 @@
 const { mapKeys, forEachKey, ensureFn, when } = require('@snooty/utils');
 
+const BOOLEAN_ATTRIBUTES = [
+  'hidden',
+  'checked',
+  'required',
+  'readonly',
+  'selected',
+  'disabled'
+];
+
 function escape(unsafe) {
   return String(unsafe)
     .replace(/&/g, '&amp;')
@@ -55,7 +64,11 @@ function html(tagDescription, ...data) {
 
       const value = escaped ? rendered : escape(rendered);
 
-      return rendered !== undefined ? `${id}="${value}"` : rendered;
+      if (BOOLEAN_ATTRIBUTES.includes(id)) {
+        return rendered ? id : undefined;
+      } else {
+        return rendered !== undefined ? `${id}="${value}"` : rendered;
+      }
     }).filter(v => v !== undefined).join(' ');
 
     buffer.push(`<${tag}${renderedAttrs.length ? ' ' : ''}${renderedAttrs}>`);
