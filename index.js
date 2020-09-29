@@ -6,7 +6,8 @@ const BOOLEAN_ATTRIBUTES = [
   'required',
   'readonly',
   'selected',
-  'disabled'
+  'disabled',
+  'multiple'
 ];
 
 function escape(unsafe) {
