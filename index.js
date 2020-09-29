@@ -95,12 +95,14 @@ function withBuffer(fn) {
 }
 
 function render(entity, context, buffer, escaped) {
+  if (entity === null || entity === undefined) return;
+  if (entity === '' || entity === false) return;
+
   switch (typeof entity) {
     case 'function':
       render(entity(context, buffer, escaped), context, buffer, escaped);
       break;
     case 'string':
-      if (entity === '') break;
       buffer.push(escaped ? entity : escape(entity));
       break;
     case 'number':
