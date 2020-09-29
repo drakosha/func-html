@@ -31,6 +31,8 @@ function html(tagDescription, ...data) {
   if (classes && classes.length) fixedClasses = classes.join(' ');
 
   for (const entity of data) {
+    if (entity === undefined || entity === null || entity === false) continue;
+
     switch (typeof entity) {
       case 'function':
       case 'string':
@@ -95,12 +97,14 @@ function withBuffer(fn) {
 }
 
 function render(entity, context, buffer, escaped) {
+  if (entity === null || entity === undefined) return;
+  if (entity === '' || entity === false) return;
+
   switch (typeof entity) {
     case 'function':
       render(entity(context, buffer, escaped), context, buffer, escaped);
       break;
     case 'string':
-      if (entity === '') break;
       buffer.push(escaped ? entity : escape(entity));
       break;
     case 'number':
