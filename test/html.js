@@ -75,6 +75,10 @@ describe('HTML Builder', function () {
     it('should escape attributes', function () {
       assert.equal(h('div', { text: '&&' } )(), '<div text="&amp;&amp;"></div>');
     });
+
+    it('should accept null from function output', function() {
+      assert.equal(h('div', () => null)(), '<div></div>');
+    })
   });
 
   describe('h.safe', function () {
