@@ -31,6 +31,8 @@ function html(tagDescription, ...data) {
   if (classes && classes.length) fixedClasses = classes.join(' ');
 
   for (const entity of data) {
+    if (entity === undefined || entity === null || entity === false) continue;
+
     switch (typeof entity) {
       case 'function':
       case 'string':

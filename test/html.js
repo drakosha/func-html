@@ -78,7 +78,12 @@ describe('HTML Builder', function () {
 
     it('should accept null from function output', function() {
       assert.equal(h('div', () => null)(), '<div></div>');
-    })
+    });
+
+    it('should ignore falsey values', function() {
+      assert.equal(h('div', true && { class: 'success' })(), '<div class="success"></div>');
+      assert.equal(h('div', false && { class: 'failed' })(), '<div></div>');
+    });
   });
 
   describe('h.safe', function () {
