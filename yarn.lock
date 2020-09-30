@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@snooty/utils@1.x":
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/@snooty/utils/-/utils-1.3.0.tgz#791abd14b5c3fd303804c861fa6c1e21f303a768"
-  integrity sha512-76C0YsotW58pTCduykazYHzpRyNLIZrm7ptb348xD2E8NrcQ73uW/oHVvPGhJiaAAI/wKCIQ26agd4sevYK4pg==
+"@snooty/utils@^1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@snooty/utils/-/utils-1.4.0.tgz#e9ff727cee09e0ef3869c0fb8a5fb4b62ac73e01"
+  integrity sha512-lHqQVLv2xCN/RQ85Wg2xJKnd3rlgW+sWYWMNqoYGOKWClK4a/jF0ewxolYkx2Qnss2eJQtHnSDkmiP3CZ67NuQ==
 
 "@types/color-name@^1.1.1":
   version "1.1.1"

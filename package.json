@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/drakosha/func-html#readme",
   "dependencies": {
-    "@snooty/utils": "1.x"
+    "@snooty/utils": "^1.4.0"
   },
   "devDependencies": {
     "eslint-plugin-mocha": "^8.0.0",
