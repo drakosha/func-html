@@ -1,6 +1,6 @@
 {
   "name": "@snooty/html",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Functional html builder",
   "main": "index.js",
   "scripts": {
