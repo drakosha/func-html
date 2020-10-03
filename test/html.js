@@ -37,6 +37,11 @@ describe('HTML Builder', function () {
       assert.equal(h('div', { test: undefined, t: '1' })({ test: 'bla' }), '<div t="1"></div>');
     });
 
+    it('should treat nulls as empty strings', function() {
+      const empty = { id: null, name: null };
+      assert.equal(h('option', { value: G('id') }, G('name'))(empty), '<option value=""></option>');
+    });
+
     it('should render boolean attributes if value is true', function () {
       assert.equal(h('div', { readonly: true } )(), '<div readonly></div>');
       assert.equal(h('div', { readonly: G('readonly') } )({ readonly: true }), '<div readonly></div>');
