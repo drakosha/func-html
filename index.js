@@ -11,6 +11,8 @@ const BOOLEAN_ATTRIBUTES = [
 ];
 
 function escape(unsafe) {
+  if (unsafe === null) return '';
+
   return String(unsafe)
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
