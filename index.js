@@ -59,14 +59,9 @@ function html(tagDescription, ...data) {
         rendered = classRender(fixedClasses, content, context);
       else {
         rendered = renderWith(content, context);
-        if (rendered && typeof rendered === 'object') {
-          rendered = { ...rendered };
 
-          forEachKey(rendered, (key, val) => {
-            rendered[key] = renderWith(val, context);
-          });
-          rendered = JSON.stringify(rendered);
-        }
+        if (rendered && typeof rendered === 'object')
+          rendered = JSON.stringify(renderComplexObject(rendered, context));
       }
 
       const value = escaped ? rendered : escape(rendered);
@@ -82,6 +77,18 @@ function html(tagDescription, ...data) {
     content.forEach(entity => render(entity, context, buffer, escaped));
     buffer.push(`</${tag}>`);
   });
+}
+
+function renderComplexObject(obj, context) {
+  const level = { ...obj };
+
+  forEachKey(obj, (key, val) => {
+    level[key] = typeof val === 'object'
+      ? renderComplexObject(val, context)
+      : renderWith(val, context);
+  });
+
+  return level;
 }
 
 function renderWith(content, context) {
