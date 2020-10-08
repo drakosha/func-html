@@ -80,13 +80,15 @@ function html(tagDescription, ...data) {
 }
 
 function renderComplexObject(obj, context) {
-  const level = { ...obj };
+  const renderVal = val => (typeof val === 'object')
+    ?  renderComplexObject(val, context)
+    : renderWith(val, context);
 
-  forEachKey(obj, (key, val) => {
-    level[key] = typeof val === 'object'
-      ? renderComplexObject(val, context)
-      : renderWith(val, context);
-  });
+  if (Array.isArray(obj)) return obj.map(renderVal);
+
+  const level = { };
+
+  forEachKey(obj, (key, val) => (level[key] = renderVal(val)));
 
   return level;
 }
