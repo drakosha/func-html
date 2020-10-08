@@ -74,6 +74,7 @@ describe('HTML Builder', function () {
 
     it('should render deep objects in attributes', function () {
       assert.equal(h('div', { data: { data: { id: G('id') } } })({ id: 1 }), '<div data="{&quot;data&quot;:{&quot;id&quot;:1}}"></div>');
+      assert.equal(h('div', { data: { list: [1, 2, 3] } })(), '<div data="{&quot;list&quot;:[1,2,3]}"></div>');
     });
 
     it('should escape html strings', function () {
