@@ -94,6 +94,11 @@ describe('HTML Builder', function () {
       assert.equal(h('div', true && { class: 'success' })(), '<div class="success"></div>');
       assert.equal(h('div', false && { class: 'failed' })(), '<div></div>');
     });
+
+    it('should safely work with dated', function() {
+      assert.equal(h('div', new Date(2020,0,1))(), '<div>2020-01-01T00:00:00.000Z</div>');
+      assert.equal(h('div', G('date'))({ date: new Date(2020,0,1) }), '<div>2020-01-01T00:00:00.000Z</div>');
+    });
   });
 
   describe('h.safe', function () {

@@ -41,6 +41,9 @@ function html(tagDescription, ...data) {
         content.push(entity);
         break;
       case 'object':
+        if (entity.constructor.name === 'Date') {
+          content.push(entity);
+        }
         forEachKey(entity, (key, val) => attrs[key] = val);
         break;
       default:
@@ -122,6 +125,10 @@ function render(entity, context, buffer, escaped) {
       buffer.push(entity.toString());
       break;
     case 'object':
+      if (entity.constructor.name === 'Date') {
+        buffer.push(entity.toJSON());
+        break;
+      }
       for (const obj of entity){
         render(obj, context, buffer, escaped);
       }
