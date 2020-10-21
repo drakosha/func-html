@@ -95,9 +95,10 @@ describe('HTML Builder', function () {
       assert.equal(h('div', false && { class: 'failed' })(), '<div></div>');
     });
 
-    it('should safely work with dated', function() {
-      assert.equal(h('div', new Date(2020,0,1))(), '<div>2020-01-01T00:00:00.000Z</div>');
-      assert.equal(h('div', G('date'))({ date: new Date(2020,0,1) }), '<div>2020-01-01T00:00:00.000Z</div>');
+    it('should safely work with dates', function() {
+      const utcDate = (...args) => new Date(Date.UTC(...args));
+      assert.equal(h('div', utcDate(2020,0,1))(), '<div>2020-01-01T00:00:00.000Z</div>');
+      assert.equal(h('div', G('date'))({ date: utcDate(2020,0,1) }), '<div>2020-01-01T00:00:00.000Z</div>');
     });
   });
 
