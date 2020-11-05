@@ -10,16 +10,21 @@ const BOOLEAN_ATTRIBUTES = [
   'multiple'
 ];
 
+const ENTITIES = {
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+  '"': '&quot;',
+  '\'': '&#x27;',
+  '`': '&#x60;'
+};
+
+const ENTITIES_RE = new RegExp(Object.keys(ENTITIES).join('|'), 'g');
+
 function escape(unsafe) {
   if (unsafe === null) return '';
 
-  return String(unsafe)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#x27;')
-    .replace(/`/g, '&#x60;');
+  return String(unsafe).replace(ENTITIES_RE, entity => ENTITIES[entity]);
 }
 
 function html(tagDescription, ...data) {
