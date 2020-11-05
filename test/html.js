@@ -204,5 +204,12 @@ describe('HTML Builder', function () {
 
       assert.equal(template(this.context), 'bla1');
     });
+
+    it('should prevent enumeration of $root and $context', function() {
+      // Otherwise checks on object's keys fail
+      h.within('collection',
+        ctx => assert.deepStrictEqual(Object.keys(ctx), ['0', '1'])
+      )(this.context);
+    });
   });
 });

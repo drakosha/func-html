@@ -164,7 +164,9 @@ html.within = (contextGetter, ...content) => {
 
   return withBuffer((context, buffer, escaped) => {
     const { $root = context } = context;
-    const shiftedContext = { ...getter(context), $root, $parent: context };
+    const shiftedContext = { ...getter(context) };
+    Object.defineProperty(shiftedContext, '$root', { value: $root });
+    Object.defineProperty(shiftedContext, '$parent', { value: context });
 
     content.forEach(entry =>
       render(entry, shiftedContext, buffer, escaped));
