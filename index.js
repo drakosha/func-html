@@ -163,7 +163,8 @@ html.within = (contextGetter, ...content) => {
   const getter = ensureFn(contextGetter);
 
   return withBuffer((context, buffer, escaped) => {
-    const shiftedContext = getter(context);
+    const { $root = context } = context;
+    const shiftedContext = { ...getter(context), $root, $parent: context };
 
     content.forEach(entry =>
       render(entry, shiftedContext, buffer, escaped));

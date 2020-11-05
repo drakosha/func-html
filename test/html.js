@@ -190,6 +190,19 @@ describe('HTML Builder', function () {
         '<div><a>test1</a><span></span><a>test2</a><span></span></div>'
       );
     });
-  });
 
+    it('should preserve original context in $parent', function() {
+      const template = h.within('collection', G('$parent.rootValue'));
+
+      assert.equal(template(this.context), 'bla1');
+    });
+
+    it('should preserve root context in $root', function() {
+      const template = h.within('collection.1',
+        h.within('internal', G('$root.rootValue'))
+      );
+
+      assert.equal(template(this.context), 'bla1');
+    });
+  });
 });
